@@ -1,5 +1,5 @@
 #!/bin/sh
 cd /home/site/wwwroot
-npm install --production=false
-npm run build
-npm start
+
+# Use npx to ensure next is found
+npx next build && npx next start
