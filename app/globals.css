@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "../styles/custom.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Action (Brand) Colors */
+  --action-50: #eff6ff;
+  --action-100: #dbeafe;
+  --action-500: #3b82f6;
+  --action-600: #007BFF;
+  --action-700: #1d4ed8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Action Colors for Tailwind */
+  --color-action-50: var(--action-50);
+  --color-action-100: var(--action-100);
+  --color-action-500: var(--action-500);
+  --color-action-600: var(--action-600);
+  --color-action-700: var(--action-700);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
