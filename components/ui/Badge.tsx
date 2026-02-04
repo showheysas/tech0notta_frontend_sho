@@ -33,6 +33,10 @@ const statusConfig: Record<MeetingStatus, { label: string; className: string }> 
         label: 'ライブ',
         className: 'bg-red-100 text-red-800', // 赤系の背景と文字
     },
+    [MeetingStatus.FAILED]: {
+        label: 'エラー',
+        className: 'bg-red-100 text-red-800', // 赤系の背景と文字
+    },
 };
 
 /**
