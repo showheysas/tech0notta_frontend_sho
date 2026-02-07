@@ -27,7 +27,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: app-002-tech0notta-frontend-dev
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8BECFC3DC8E94F4D8FD42D78936D72E7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0BECFC3DC8E94F4D8FD42D78930D72E7 }}
           package: .
 
       - name: Notify on failure
