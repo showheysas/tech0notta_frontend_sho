@@ -26,6 +26,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug - Check build output
+        run: |
+          echo "=== .next directory ==="
+          ls -la .next/
+          echo "=== .next/standalone directory ==="
+          ls -la .next/standalone/ || echo "standalone not found"
+          echo "=== Looking for server.js ==="
+          find .next -name "server.js" 2>/dev/null || echo "server.js not found"
+
       - name: Prepare deployment package
         run: |
           mkdir -p deploy/.next
