@@ -8,18 +8,16 @@ echo "=== Starting deployment ==="
 # Navigate to deployment source
 cd "$DEPLOYMENT_SOURCE"
 
-# Install dependencies
-echo "Installing dependencies..."
-npm ci --production=false
-
-# Build Next.js application
-echo "Building Next.js application..."
-npm run build
-
-# Copy standalone output to deployment target
+# Copy pre-built standalone output to deployment target
 echo "Copying standalone build to deployment target..."
-cp -r .next/standalone/* "$DEPLOYMENT_TARGET/"
-cp -r .next/static "$DEPLOYMENT_TARGET/.next/static"
-cp -r public "$DEPLOYMENT_TARGET/public" 2>/dev/null || true
 
-echo "=== Deployment complete ==="
+# Check if standalone build exists
+if [ -d ".next/standalone" ]; then
+    cp -r .next/standalone/* "$DEPLOYMENT_TARGET/"
+    cp -r .next/static "$DEPLOYMENT_TARGET/.next/static"
+    cp -r public "$DEPLOYMENT_TARGET/public" 2>/dev/null || true
+    echo "=== Deployment complete (pre-built) ==="
+else
+    echo "Error: .next/standalone not found. Build must be done in CI."
+    exit 1
+fi

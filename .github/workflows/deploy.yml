@@ -26,12 +26,20 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Prepare deployment package
+        run: |
+          mkdir -p deploy
+          cp -r .next/standalone/* deploy/
+          cp -r .next/static deploy/.next/static
+          cp -r public deploy/public 2>/dev/null || true
+          cp startup.sh deploy/
+
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
         with:
           app-name: app-002-tech0notta-frontend-dev
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0BECFC3DC8E94F4D8FD42D78930D72E7 }}
-          package: .
+          package: deploy
         env:
           WEBSITE_NODE_DEFAULT_VERSION: '~20'
 
