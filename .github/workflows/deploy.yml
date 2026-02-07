@@ -33,6 +33,9 @@ jobs:
           cp -r .next/static deploy/.next/static
           cp -r public deploy/public 2>/dev/null || true
           cp startup.sh deploy/
+          # Disable Oryx build on Azure
+          echo "SCM_DO_BUILD_DURING_DEPLOYMENT=false" > deploy/.env
+          touch deploy/.skipOryxBuild
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
