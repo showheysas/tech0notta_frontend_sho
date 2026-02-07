@@ -38,14 +38,14 @@ jobs:
       - name: Prepare deployment package
         run: |
           mkdir -p deploy
-          # Copy standalone build
+          # Copy standalone build (server.js, node_modules, package.json)
           cp -r .next/standalone/* deploy/
-          # Copy static files
-          cp -r .next/static deploy/.next/
-          # Copy BUILD_ID and other required files
-          cp .next/BUILD_ID deploy/.next/
-          cp .next/prerender-manifest.json deploy/.next/ 2>/dev/null || true
-          cp .next/routes-manifest.json deploy/.next/ 2>/dev/null || true
+          # Replace .next with full build output
+          rm -rf deploy/.next
+          cp -r .next deploy/.next
+          # Remove unnecessary files from .next
+          rm -rf deploy/.next/standalone
+          rm -rf deploy/.next/cache
           # Copy public folder
           cp -r public deploy/public 2>/dev/null || true
           # Copy startup script
