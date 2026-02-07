@@ -1,11 +1,8 @@
 @import "tailwindcss";
-@import "../styles/custom.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
-  /* Action (Brand) Colors */
   --action-50: #eff6ff;
   --action-100: #dbeafe;
   --action-500: #3b82f6;
@@ -16,10 +13,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  /* Action Colors for Tailwind */
   --color-action-50: var(--action-50);
   --color-action-100: var(--action-100);
   --color-action-500: var(--action-500);
@@ -27,15 +20,36 @@
   --color-action-700: var(--action-700);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background: #f8fafc;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Animations */
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fade-in 0.5s ease-out; }
+
+@keyframes slide-in-from-right {
+  from { opacity: 0; transform: translateX(2rem); }
+  to { opacity: 1; transform: translateX(0); }
 }
+.animate-slide-in-from-right { animation: slide-in-from-right 0.5s ease-out; }
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-slide-in-left { animation: slide-in-left 0.3s ease-out; }
+
+@keyframes fade-in-overlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in-overlay { animation: fade-in-overlay 0.3s ease-out; }

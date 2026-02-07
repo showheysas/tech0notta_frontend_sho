@@ -1,5 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+# Azure App Service startup script for Next.js standalone
 cd /home/site/wwwroot
 
-# Use npx to ensure next is found
-npx next build && npx next start
+# Set default port if not provided
+export PORT=${PORT:-3000}
+
+# Start Next.js standalone server
+node .next/standalone/server.js
