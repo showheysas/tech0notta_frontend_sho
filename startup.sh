@@ -4,7 +4,7 @@
 cd /home/site/wwwroot
 
 # Set default port if not provided
-export PORT=${PORT:-3000}
+export PORT=${PORT:-8080}
 
 # Start Next.js standalone server
-node .next/standalone/server.js
+node server.js
