@@ -38,13 +38,19 @@ jobs:
       - name: Prepare deployment package
         run: |
           mkdir -p deploy
+          # Copy standalone build
           cp -r .next/standalone/* deploy/
-          mkdir -p deploy/.next
+          # Copy static files
           cp -r .next/static deploy/.next/
+          # Copy BUILD_ID and other required files
+          cp .next/BUILD_ID deploy/.next/
+          cp .next/prerender-manifest.json deploy/.next/ 2>/dev/null || true
+          cp .next/routes-manifest.json deploy/.next/ 2>/dev/null || true
+          # Copy public folder
           cp -r public deploy/public 2>/dev/null || true
+          # Copy startup script
           cp startup.sh deploy/
-          echo "=== deploy directory structure ==="
-          ls -la deploy/
+          echo "=== deploy/.next directory ==="
           ls -la deploy/.next/
 
       - name: Deploy to Azure App Service
