@@ -39,9 +39,13 @@ jobs:
         run: |
           mkdir -p deploy
           cp -r .next/standalone/* deploy/
-          cp -r .next/static deploy/.next/static
+          mkdir -p deploy/.next
+          cp -r .next/static deploy/.next/
           cp -r public deploy/public 2>/dev/null || true
           cp startup.sh deploy/
+          echo "=== deploy directory structure ==="
+          ls -la deploy/
+          ls -la deploy/.next/
 
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v3
